@@ -1,0 +1,95 @@
+class Bank:
+    def _init_(self, name, location, code):
+        self.name = name
+        self.location = location
+        self.code = code
+        self.branches = []
+    
+    def add_branch(self, branch):
+        self.branches.append(branch)
+    
+    def remove_branch(self, branch):
+        self.branches.remove(branch)
+    
+    def get_branch(self, branch_code):
+        for branch in self.branches:
+            if branch.branch_code == branch_code:
+                return branch
+        return None
+    
+    def get_all_branches(self):
+        return self.branches
+
+
+class Branch:
+    def _init_(self, branch_code, city):
+        self.branch_code = branch_code
+        self.city = city
+        self.accounts = []
+    
+    def add_account(self, account):
+        self.accounts.append(account)
+    
+    def remove_account(self, account):
+        self.accounts.remove(account)
+
+
+class Account:
+    def _init_(self, acc_no, balance):
+        self.acc_no = acc_no
+        self.balance = balance
+    
+    def deposit(self, amount):
+        self.balance += amount
+    
+    def withdraw(self, amount):
+        if amount <= self.balance:
+            self.balance -= amount
+        else:
+            raise ValueError("Insufficient funds")
+
+
+class Loan:
+    def _init_(self, loan_no, amount, loan_type):
+        self.loan_no = loan_no
+        self.amount = amount
+        self.type = loan_type
+    
+    def add_customer(self, customer):
+        pass  # Implementation
+
+    def get_emi(self):
+        pass  # Implementation
+
+
+class SavingAccount(Account):
+    def _init_(self, acc_no, balance, min_balance, opening_date):
+        super()._init_(acc_no, balance)
+        self.min_balance = min_balance
+        self.opening_date = opening_date
+    
+    def add_customer(self, customer):
+        pass  # Implementation
+
+    def remove_customer(self, customer):
+        pass  # Implementation
+
+
+class FixedDepositAccount(Account):
+    def _init_(self, acc_no, balance, int_rate, opening_date):
+        super()._init_(acc_no, balance)
+        self.int_rate = int_rate
+        self.opening_date = opening_date
+    
+    def add_customer(self, customer):
+        pass  # Implementation
+
+    def remove_customer(self, customer):
+        pass  # Implementation
+
+
+class Customer:
+    def _init_(self, cust_id, name, address):
+        self.cust_id = cust_id
+        self.name = name
+        self.address = address
